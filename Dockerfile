@@ -1,6 +1,6 @@
 ARG PHP_VERSION=7.1.33
 FROM php:${PHP_VERSION}-fpm-alpine3.10
-ARG XDEBUG_VERSION
+ARG XDEBUG_VERSION=2.9.4
 ENV PHPIZE_DEPS \
 		autoconf \
 		dpkg-dev dpkg \
