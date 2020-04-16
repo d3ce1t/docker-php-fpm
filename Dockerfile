@@ -1,6 +1,4 @@
-ARG PHP_VERSION=7.1.33
-FROM php:${PHP_VERSION}-fpm-alpine3.10
-ARG XDEBUG_VERSION=2.9.4
+FROM php:7.2.29-fpm-alpine3.10
 ENV PHPIZE_DEPS \
 		autoconf \
 		dpkg-dev dpkg \
@@ -19,7 +17,7 @@ ENV PHPIZE_DEPS \
         libxpm-dev \
         zlib-dev \
         icu-dev
-ENV XDEBUG_VERSION ${XDEBUG_VERSION}
+ENV XDEBUG_VERSION=2.9.4
 ENV COMPOSER_CACHE_DIR=/dev/null
 RUN pecl channel-update pecl.php.net \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
