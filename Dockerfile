@@ -32,7 +32,7 @@ RUN pecl channel-update pecl.php.net \
         --with-freetype-dir \
     && docker-php-ext-install intl bcmath pdo_mysql gd zip \
     && pecl install xdebug-$XDEBUG_VERSION \
-    && docker-php-ext-enable xdebug \
+    && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
     && docker-php-source delete \
     && apk del .build-deps \
     && rm -rf /tmp/pear ~/.pearrc
