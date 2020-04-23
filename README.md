@@ -11,5 +11,6 @@ docker build -t d3ce1t/php-fpm:7.1.33-alpine .
 ```docker
 FROM d3ce1t/php-fpm
 RUN docker-php-ext-enable xdebug \
-    && rm /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+    && rm /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini \
+    && cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 ```
