@@ -30,7 +30,7 @@ RUN pecl channel-update pecl.php.net \
         --with-zlib-dir \
         --with-xpm-dir \
         --with-freetype-dir \
-    && docker-php-ext-install intl bcmath pdo_mysql gd zip \
+    && docker-php-ext-install intl bcmath pdo_mysql gd zip opcache \
     && pecl install xdebug-$XDEBUG_VERSION \
     && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
     && docker-php-source delete \
