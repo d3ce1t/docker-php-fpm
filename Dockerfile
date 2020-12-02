@@ -1,4 +1,4 @@
-FROM php:7.2.33-fpm-alpine3.12
+FROM php:7.2.34-fpm-alpine3.12
 ENV PHPIZE_DEPS \
 		autoconf \
 		dpkg-dev dpkg \
@@ -17,7 +17,7 @@ ENV PHPIZE_DEPS \
         libxpm-dev \
         zlib-dev \
         icu-dev
-ENV XDEBUG_VERSION=2.9.6
+ENV XDEBUG_VERSION=2.9.8
 ENV COMPOSER_CACHE_DIR=/dev/null
 RUN pecl channel-update pecl.php.net \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
@@ -33,8 +33,8 @@ RUN pecl channel-update pecl.php.net \
     && docker-php-ext-install intl bcmath pdo_mysql gd zip opcache \
     && pecl install xdebug-$XDEBUG_VERSION \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php -r "if (hash_file('sha384', 'composer-setup.php') === '795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
-    && php composer-setup.php --version=1.10.13 \
+    && php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
+    && php composer-setup.php --version=1.10.17 \
     && php -r "unlink('composer-setup.php');" \
     && mv composer.phar /usr/local/bin/composer \
     && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
