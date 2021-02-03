@@ -4,7 +4,7 @@ This image contains PHP-FPM with Opcache and XDebug installed. Configuration is 
 
 ## Build this image
 ```
-docker build -t d3ce1t/php-fpm:7.2.34-alpine .
+docker build -t d3ce1t/php-fpm:7.3.26-alpine .
 ```
 
 ## Create your own image for development
