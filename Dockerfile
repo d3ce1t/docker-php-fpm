@@ -1,4 +1,4 @@
-FROM php:7.3.26-fpm-alpine3.12
+FROM php:7.4.16-fpm-alpine3.12
 ENV PHPIZE_DEPS \
 		autoconf \
 		dpkg-dev dpkg \
@@ -23,14 +23,13 @@ ENV COMPOSER_CACHE_DIR=/dev/null
 RUN pecl channel-update pecl.php.net \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     && apk add --no-cache freetype libpng libjpeg-turbo libwebp libxpm icu zlib libzip \
+    # See https://www.php.net/manual/en/image.installation.php
     && docker-php-ext-configure gd \
-        --with-gd \
-        --with-webp-dir \
-        --with-jpeg-dir \
-        --with-png-dir \
-        --with-zlib-dir \
-        --with-xpm-dir \
-        --with-freetype-dir \
+        --enable-gd \
+        --with-webp \
+        --with-jpeg \
+        --with-xpm \
+        --with-freetype \
     && docker-php-ext-install intl bcmath pdo_mysql gd zip opcache \
     && pecl install xdebug-$XDEBUG_VERSION \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
